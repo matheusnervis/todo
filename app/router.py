@@ -1,9 +1,9 @@
-from starlette.responses import HTMLResponse
+from starlette.responses import FileResponse
 from starlette.routing import Route
 
 
-def index(request):
-    return HTMLResponse("Hello world")
+async def index(request):
+    return FileResponse("app/templates/index.html")
 
 
 routes = [Route("/", index, methods=["GET"], name="index")]

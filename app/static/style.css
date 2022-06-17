@@ -6,3 +6,27 @@
     font-weight: 900;
     font-size: 1.4rem;
 }
+
+#new-task {
+    margin-top: 25px;
+}
+
+#no-task-msg {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: 600;
+}
+
+.list-group-item-action:focus, .list-group-item-action:hover {
+    background-color: #eff2f5 !important;
+}
+
+.task-btn-div {
+    text-align: end;
+}
+
+@media (min-width: 992px) {
+    #main {
+        max-width: 960px !important;
+    }
+}

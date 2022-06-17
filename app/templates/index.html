@@ -20,15 +20,32 @@
                 </a>
             </div>
         </nav>
-        <div id="main" class="container-fluid">
-            <div id="list_container">
-                <ul class="list-group">
-                    <li v-for="task in tasks" :key="task.id"class="list-group-item list-group-item-action">
-                        <input class="form-check-input me-1" type="checkbox" :checked="task.done" aria-label="...">
-                        {{task.description}}
-                    </li>
-                </ul>
+        <div id="main" class="container">
+            <ul v-if="tasks.length > 0" class="list-group">
+                <li v-for="task in tasks" :key="task.id"class="list-group-item list-group-item-action">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <input class="form-check-input me-1" type="checkbox" v-model="task.done">
+                                <label>{{task.description}}</label>
+                            </div>
+                            <div class="col-3 task-btn-div">
+                                <button class="btn btn-danger" @click="deleteTask(task.id)">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div v-else id="no-task-msg" class="list-group-item">
+                You don't have any tasks
             </div>
+            <form action="#" id="new-task" @submit.prevent="addTask">
+                <div class="mb-3">
+                    <label for="taskDescription" class="form-label">New Task</label>
+                    <input type="text" class="form-control" id="taskDescription" v-model="taskDescription">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Task</button>
+            </form>
         </div>
     </div>
     <script src="/app/static/script.js"></script>

@@ -1,31 +1,25 @@
 const app = Vue.createApp({
     data() {
         return {
-            title: "TODO",
+            title: 'TODO',
             idNext: 4,
             tasks: [
-                {id: 1, description: "Do Something", done: false},
-                {id: 2, description: "Do other Something", done: true},
-                {id: 3, description: "Do more other Something", done: false}
+                {id: 1, description: 'Do Something', done: false},
+                {id: 2, description: 'Do other Something', done: true},
+                {id: 3, description: 'Do more other Something', done: false}
             ],
-            taskDescription: '',
+            formStatus: 'Init'
         }
     },
     methods: {
-        addTask() {
-            if (this.taskDescription == '') {
-                return
-            }
+        addTask(task) {
+            if (!task.description) return
 
-            let task = {
-                id: this.idNext,
-                description: this.taskDescription,
-                done: false
-            }
+            task.idNext = this.idNext
             this.tasks.push(task)
             this.idNext++
 
-            this.taskDescription= ""
+            this.formStatus = 'Ok'
         },
         deleteTask(id) {
             for (let i=0; i<this.tasks.length; i++){

@@ -1,0 +1,14 @@
+[tool.isort]
+profile = "black"
+src_paths = ["app", "test"]
+
+[tool.mypy]
+files = ["app", "test"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -v"
+testpaths = [
+    "test"
+]

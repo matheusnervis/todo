@@ -11,7 +11,3 @@ class Task(TaskCreate):
 
     class Config:
         orm_mode = True
-
-
-class TaskList(BaseModel):
-    tasks: list[Task]

@@ -15,7 +15,7 @@ async def index(request):
 
 routes = [Route("/", index, methods=["GET"], name="index")]
 
-api_router = APIRouter(prefix="/api")
+api_router = APIRouter(prefix="/api")  # https://localhost:8080/api/{api_route}
 
 
 @api_router.get("/tasks/{task_id}", response_model=schemas.Task)
@@ -40,7 +40,7 @@ async def delete_task(task_id: int, db: Session = Depends(get_db_session)):
     crud.delete_task(db, task_id)
 
 
-@api_router.put("/task/{task_id}")
+@api_router.put("/task/{task_id}", response_model=schemas.Task)
 async def update_task(
     task_id: int, done: bool = Body(True, embed=True), db=Depends(get_db_session)
 ):
@@ -48,6 +48,7 @@ async def update_task(
     if db_task is None:
         raise HTTPException(status_code=404, detail="Task not found")
     db_task = crud.update_task(db, task_id, done)
+    return db_task
 
 
 @api_router.get("/task/list", response_model=list[schemas.Task])

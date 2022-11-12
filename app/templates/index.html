@@ -14,8 +14,8 @@
     <div id="app">
         <navbar :title="title"></navbar>
         <div id="main" class="container">
-            <task-list :tasks="tasks" @delete-task="deleteTask"></task-list>
-            <task-form @add-task="addTask" :form-status="formStatus" @form-init="formStatus='Init'"></task-form>
+            <task-list :tasks="tasks" :tasks-loading="tasksLoading" @delete-task="deleteTask" @update-task="updateTask"></task-list>
+            <task-form @add-task="addTask"></task-form>
         </div>
     </div>
     <script src="/app/static/script.js"></script>
